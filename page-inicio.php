@@ -11,7 +11,7 @@
                 <a class="btn btn-primary scale-in-center" style="animation-delay: 1s" role="button" href="<?php echo get_bloginfo('url').'/empresa/'?>">Sobre a empresa<img src="<?php echo get_template_directory_uri().'/assets/img/iconeUnion.svg'?>"></a>
             </div>
             <div class="col d-none d-md-block">
-                <div class="slide-in-bck-right" style="animation-delay: 1s">
+                <div class="puff-in-center" style="animation-delay: 1s">
                     <img class="img-fluid d-xl-flex justify-content-xl-center" src="<?php echo get_template_directory_uri().'/assets/img/iconeUnionTop.png'?>">
               </div>
             </div>
@@ -22,7 +22,7 @@
 <!-- Sessão Soluções -->
 <section id="solucoes">
     <div class="container">
-        <h1>Soluções e Tecnologias</h1>
+        <h1 class="animate" data-effect="scale-in-center">Soluções e Tecnologias</h1>
         <div class="row">
 
             <!-- Aqui entra o loop Wordpress para mostrar os Thumbs das Solucoes -->
@@ -39,11 +39,16 @@
 
                 if ( $loop->have_posts() ):
 
+                    $delay = 0.5;
+                    $interval = 0.25;
+
                     while ( $loop->have_posts() ): 
                         $loop->the_post();
 
                         // Carrega o template com os thumbs
-                        get_template_part( 'template-parts/content', 'thumb-solucoes');             
+                        get_template_part( 'template-parts/content', 'thumb-solucoes'); 
+                        
+                    $delay = $delay + $interval;
 
                     endwhile;
                     wp_reset_postdata();
@@ -66,7 +71,7 @@
 <!-- Sessão Artigos -->
 <section id="artigos">
     <div class="container">
-        <h1>Artigos</h1>
+        <h1 class="animate" data-effect="scale-in-center">Artigos</h1>
         <div class="row">
 
             <!-- Aqui entra o loop Wordpress para mostrar os Thumbs dos Artigos -->
@@ -84,11 +89,16 @@
 
                 if ( $loop->have_posts() ):
 
+                    $delay = 0.25;
+                    $interval = 0.5;
+
                     while ( $loop->have_posts() ): 
                         $loop->the_post();
 
                         // Carrega o template com os thumbs
-                        get_template_part( 'template-parts/content', 'thumb-artigos');             
+                        get_template_part( 'template-parts/content', 'thumb-artigos');
+                        
+                        $delay = $delay + $interval;
 
                     endwhile;
                     wp_reset_postdata();
@@ -116,7 +126,7 @@
 <!-- Sessão Apresentações -->
 <section id="apresentacoes">
     <div class="container">
-        <h1><strong>Apresentações em Eventos</strong></h1>
+        <h1 class="animate" data-effect="scale-in-center">Apresentações em Eventos</h1>
         <div class="row">
 
             <!-- Aqui entra o loop Wordpress para mostrar os Thumbs das Apresentações -->
@@ -132,11 +142,16 @@
 
                 if ( $loop->have_posts() ):
 
+                    $delay = 0.25;
+                    $interval = 0.5;
+
                     while ( $loop->have_posts() ): 
                         $loop->the_post();
 
                         // Carrega o template com os thumbs
-                        get_template_part( 'template-parts/content', 'thumb-apresentacoes');             
+                        get_template_part( 'template-parts/content', 'thumb-apresentacoes'); 
+                        
+                        $delay = $delay + $interval;
 
                     endwhile;
                     wp_reset_postdata();
@@ -165,7 +180,7 @@
 <!-- Sessão Projetos -->
 <section id="projetos">
     <div class="container">
-        <h1>Projetos</h1>
+        <h1 class="animate" data-effect="scale-in-center">Projetos</h1>
         <div class="row">
 
             <!-- Aqui entra o loop Wordpress para mostrar os Thumbs dos Projetos -->
@@ -183,11 +198,16 @@
 
                 if ( $loop->have_posts() ):
 
+                    $delay = 0.25;
+                    $interval = 0.25;
+
                     while ( $loop->have_posts() ): 
                         $loop->the_post();
 
                         // Carrega o template com os thumbs
-                        get_template_part( 'template-parts/content', 'thumb-projetos');             
+                        get_template_part( 'template-parts/content', 'thumb-projetos');
+                        
+                        $delay = $delay + $interval;
 
                     endwhile;
                     wp_reset_postdata();
@@ -215,7 +235,7 @@
 <!-- Sessão Contato -->
 <section id="contato">
     <div class="container">
-        <h1>Contato</h1>
+        <h1 class="animate" data-effect="scale-in-center">Contato</h1>
         <div class="row">
             <!-- <div class="col-12 col-md-6" id="mapa">
                 <div><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3672.701710924375!2d-43.348273084589685!3d-22.99799384691455!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9bda14588c617f%3A0xca5b4254ee632883!2sAv.%20das%20Am%C3%A9ricas%2C%203434%20-%204%20-%20Barra%20da%20Tijuca%2C%20Rio%20de%20Janeiro%20-%20RJ%2C%2022640-102!5e0!3m2!1spt-BR!2sbr!4v1600742148881!5m2!1spt-BR!2sbr" width="100%" height="400" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe></div>
@@ -244,7 +264,7 @@
 <!-- Sessão Parceiros -->
 <section id="parceiros">
     <div class="container">
-        <h1>Parceiros</h1>
+        <h1 class="animate" data-effect="scale-in-center">Parceiros</h1>
         <div class="row">
 
             <!-- Aqui entra o loop Wordpress para mostrar as logos dos Parceiros -->
@@ -261,11 +281,16 @@
 
                 if ( $loop->have_posts() ):
 
+                    $delay = 0;
+                    $interval = 0.25;
+
                     while ( $loop->have_posts() ): 
                         $loop->the_post();
 
                         // Carrega o template com os thumbs
-                        get_template_part( 'template-parts/content', 'parceiros');             
+                        get_template_part( 'template-parts/content', 'parceiros');
+                        
+                        $delay = $delay + $interval;
 
                     endwhile;
                     wp_reset_postdata();

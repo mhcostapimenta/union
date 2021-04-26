@@ -3,10 +3,14 @@
 	// Carrega a URL da imagem fullsize
 	$img_url = get_the_post_thumbnail_url(get_the_ID());
 
+    global $delay;
+
  ?>
 
 <!-- Conteúdo do Thumb -->
-<div class="thumbs"><img src="<?php  echo $img_url; ?>">
+<div class="thumbs">
+   
+    <img src="<?php  echo $img_url; ?>">
     <div>
         <?php the_tags('<span class="categorias">',' | ','</span>'); ?>
         <a href="<?php the_permalink(); ?>">

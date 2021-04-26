@@ -19,7 +19,7 @@
 
 <!-- Conteúdo da página -->
 <div id="parallax-image" style="background-image: url(<?php echo $img_url ?>)">
-  <h1><?php the_title(); ?></h1>
+  <h1 class="tracking-in-expand-fwd-bottom"><?php the_title(); ?></h1>
 </div>
 
 <section id="conteudoTemplate">
