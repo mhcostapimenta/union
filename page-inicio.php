@@ -271,10 +271,11 @@
             <?php
 
                 $args = array(
-                    'posts_per_page'=> -1,					// Mostrar qtde padrão de posts
-                    'post_type' => 'parceiros',              // Tipo de post
+                    'posts_per_page'=> -1,				// Mostrar qtde padrão de posts
+                    'post_type' => 'post',              // Tipo de post
+                    'category_name' => 'parceiros',     // Categoria
                     'orderby' => 'title',				// Ordenar pelo titulo do Cliente
-                    'order' => 'ASC' 						// Ordem Ascendente
+                    'order' => 'ASC' 					// Ordem Ascendente
                 );
 
                 $loop = new WP_Query( $args );

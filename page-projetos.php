@@ -35,14 +35,16 @@
 		                <?php
 
                             query_posts( array( 'post_type' => 'post',
+                            'posts_per_page'=> 12,
                             'category_name' => 'projetos',
-                            'orderby' => 'publish_date', 
+                            'orderby' => 'title',
+                            'order' => 'ASC',
                             'paged' => get_query_var( 'paged' ) ) );
 		             
 	                    	while ( have_posts() ) : the_post();
 
 	                        // Carrega o template com os thumbs
-	                        get_template_part( 'template-parts/content', 'thumb-archive-apresentacoes');
+	                        get_template_part( 'template-parts/content', 'thumb-projetos-archive');
 
 	                    	endwhile;
 

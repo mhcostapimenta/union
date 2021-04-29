@@ -25,6 +25,8 @@
                     $date = '<i class="fa fa-clock-o"></i><span>Data da publicação: '.get_the_date('d/m/Y').'</span>';
                     $subtitleBox = 'Últimos Artigos';
                     $post_type = 'post';
+                    $orderby = 'publish_date';
+                    $order = 'DESC';
                     $category_name = 'artigos';
                     $template_parts = 'thumb-single';
                     break;               
@@ -33,14 +35,28 @@
                     $date = '';
                     $subtitleBox = 'Últimos Projetos';
                     $post_type = 'post';
+                    $orderby = 'publish_date';
+                    $order = 'DESC';
                     $category_name = 'projetos';
+                    $template_parts = 'thumb-single-projetos';
+                    break;
+                case "Parceiros" :
+                    $subtitle = '';
+                    $date = '';
+                    $subtitleBox = 'Últimos Parceiros';
+                    $post_type = 'post';
+                    $orderby = 'publish_date';
+                    $order = 'DESC';
+                    $category_name = 'parceiros';
                     $template_parts = 'thumb-single-projetos';
                     break;
                 default: 
                     $subtitle = '<h2>'.rwmb_meta( 'union-nomeEvento' ).'</h2>';
                     $date = '<i class="fa fa-clock-o"></i><span>Data do evento: '.convertToDate(rwmb_meta( 'union-dataEvento' )).'</span>'; 
                     $subtitleBox = 'Últimas Apresentações';
-                    $post_type = 'apresentacoes'; 
+                    $post_type = 'apresentacoes';
+                    $orderby = 'publish_date';
+                    $order = 'DESC';
                     $category_name = '';
                     $template_parts = 'thumb-single-apresentacoes'; 
             }
@@ -51,24 +67,23 @@
 
     <!-- Conteúdo da página -->
     <?php 
-        if ($category_name !== 'projetos' ) {
+        if ($category_name == 'projetos' ||  $category_name == 'parceiros') {
     ?>
-
-        <div id="parallax-image" style="background-image: url(<?php echo get_the_post_thumbnail_url(); ?>)">
-            <h1 class="tracking-in-expand-fwd-bottom"><?php the_title(); ?></h1>
-        </div>
 
         <article>
             <div class="container">
+                <h1 class="tracking-in-expand-fwd-bottom mb-3"><?php the_title(); ?></h1>
 
     <?php 
         } else {
     ?>
 
-        <article>
-                <div class="container">
+        <div id="parallax-image" style="background-image: url(<?php echo get_the_post_thumbnail_url(); ?>)">
+                    <h1 class="tracking-in-expand-fwd-bottom"><?php the_title(); ?></h1>
+                </div>
 
-                    <h1 class="tracking-in-expand-fwd-bottom mb-3"><?php the_title(); ?></h1>
+                <article>
+                    <div class="container">
     
     <?php
         }
@@ -80,51 +95,48 @@
                 <!-- Coluna da esquerda -->
                 <div class="col-12 col-md-7 order-2 order-md-1">
 
-                <!-- Mostra o subtítulo <h2> de acordo com o conteúdo da página -->
-                <?php echo $subtitle; ?>
+                    <!-- Mostra o subtítulo <h2> de acordo com o conteúdo da página -->
+                    <?php echo $subtitle; ?>
 
-                <div class="flex-row barraArtigo">
-                    <!-- Mostra a data de acordo com o conteúdo da página -->
-                    <div class="data">                     
-                        <?php echo $date ?>
+                    <div class="flex-row barraArtigo">
+                        <!-- Mostra a data de acordo com o conteúdo da página -->
+                        <div class="data">                     
+                            <?php echo $date ?>
+                        </div>
+
+                        <?php 
+                            if ($category_name !== 'projetos' &&  $category_name !== 'parceiros' ) {
+                        ?>
+
+                        <!-- Compartilhamento Redes Sociais -->
+                        <div class="shareSocial text-right">
+                            <a href="<?php echo $stringFacebook; ?>"><i class="fa fa-facebook-square"></i></a>
+                            <a href="<?php echo $stringTwitter; ?>"><i class="fa fa-twitter-square"></i></a>
+                            <a href="<?php echo $stringLinkedin; ?>"><i class="fa fa-linkedin-square"></i></a>
+                        </div>
+                        <hr>
+
+                        <?php
+                                }
+                        ?>
+
                     </div>
 
+                    <!-- Conteúdo do Post -->
+                    <?php the_content(); ?>
+
+                    <div>
+                        <!-- Carrega as tags do artigo -->
+                        <?php echo get_the_tag_list('<div class="botaoCategoria">','','</div>'); ?>
+                    </div>
+
+                    <!-- Fim do conteudo do artigo -->
                     <?php 
-                        if ($category_name !== 'projetos' ) {
+                        endwhile;
+                        wp_reset_postdata();
                     ?>
-
-                    <!-- Compartilhamento Redes Sociais -->
-                    <div class="shareSocial text-right">
-                        <a href="<?php echo $stringFacebook; ?>"><i class="fa fa-facebook-square"></i></a>
-                        <a href="<?php echo $stringTwitter; ?>"><i class="fa fa-twitter-square"></i></a>
-                        <a href="<?php echo $stringLinkedin; ?>"><i class="fa fa-linkedin-square"></i></a>
-                    </div>
-                    <hr>
-
-                    <?php
-                            }
-                    ?>
-
+                    
                 </div>
-
-                
-
-
-
-                <!-- Conteúdo do Post -->
-                <?php the_content(); ?>
-
-                <div>
-                    <!-- Carrega as tags do artigo -->
-                    <?php echo get_the_tag_list('<div class="botaoCategoria">','','</div>'); ?>
-                </div>
-            </div>
-
-                <!-- Fim do conteudo do artigo -->
-                <?php 
-                    endwhile;
-                    wp_reset_postdata();
-                ?>
 
                 <!-- Coluna da direita -->
                 <div class="col-12 col-md-5 order-1 order-md-2">
@@ -144,8 +156,8 @@
 			                        'posts_per_page'=> 5,
                                     'post_type' => $post_type,
                                     'category_name' => $category_name,             
-                                    'orderby' => 'publish_date',
-                                    'order' => 'DESC'
+                                    'orderby' => $orderby,
+                                    'order' => $order
 			                    );
 
 			                    $loop = new WP_Query( $args );

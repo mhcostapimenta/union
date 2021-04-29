@@ -5,6 +5,44 @@
     /* Captura as informações sobre a categoria selecionada */
     $cat = get_the_category()[0]->cat_name;
     $catslug = get_the_category()[0]->slug;
+
+    // Determina o conteúdo da página de acordo com a categoria do post
+    switch ($cat) {
+        case "Artigos" :
+            $subtitle = '<h2>'.get_the_author( ).'</h2>';
+            $date = '<i class="fa fa-clock-o"></i><span>Data da publicação: '.get_the_date('d/m/Y').'</span>';
+            $subtitleBox = 'Últimos Artigos';
+            $post_type = 'post';
+            $category_name = 'artigos';
+            $template_parts = 'thumb-archive-apresentacoes';
+            break;               
+        case "Projetos" :
+            $subtitle = '';
+            $date = '';
+            $subtitleBox = 'Últimos Projetos';
+            $post_type = 'post';
+            $category_name = 'projetos';
+            $template_parts = 'thumb-projetos-archive';
+            break;
+        case "Parceiros" :
+            $subtitle = '';
+            $date = '';
+            $subtitleBox = 'Últimos Parceiros';
+            $post_type = 'post';
+            $category_name = 'parceiros';
+            $template_parts = 'parceiros-archive';
+            break;
+        default: 
+            $subtitle = '<h2>'.rwmb_meta( 'union-nomeEvento' ).'</h2>';
+            $date = '<i class="fa fa-clock-o"></i><span>Data do evento: '.convertToDate(rwmb_meta( 'union-dataEvento' )).'</span>'; 
+            $subtitleBox = 'Últimas Apresentações';
+            $post_type = 'apresentacoes'; 
+            $category_name = '';
+            $template_parts = 'thumb-single-apresentacoes'; 
+    }
+
+
+
 ?>
 
 <section id="conteudo">
@@ -42,13 +80,14 @@
 
                             query_posts( array( 'post_type' => 'post',
                             'category_name' => $catslug,
+                            'posts_per_page'=> 9,
                             'orderby' => 'publish_date', 
                             'paged' => get_query_var( 'paged' ) ) );
                     
                             while ( have_posts() ) : the_post();
 
                               // Carrega o template com os thumbs
-                              get_template_part( 'template-parts/content', 'thumb-archive-apresentacoes');
+                              get_template_part( 'template-parts/content', $template_parts);
 
                             endwhile;
 

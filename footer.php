@@ -41,7 +41,7 @@
                     Av das Américas 3434, 211 bl 4<br>
                     Rio de Janeiro, RJ 22640-102<br>
                     Tel.: +55 21 3431-3802<br>
-                    e-mail: contato@union.eng.br</p>
+                    e-mail: <a href="mailto:contato@union.eng.br">contato@union.eng.br</a></p>
                 </div>
             </div>
 

@@ -10,15 +10,25 @@ $(document).ready(function($){
         $(value).css("background-image", "url('" + atributo + "')");
     });
 
-    // function ativaNoScroll() { 
-    //     $('.animate').each(function(index, value){
-    //         var size = window.innerHeight;
-    //         var coordY = $(value).offset().top;
-    //         if (coordY < size) {
-    //             $(value).addClass("intro");
-    //         }
-    //     });
-    // };
+    // Remove better-nav quando clicar em um link
+    $('#side-menu').on('click', '.nav-link', function () {
+
+        var body = $('body');
+        var overlay = $('.side-menu-overlay');
+        var sideMenu = $('#side-menu');
+        
+        function slideOut() {
+            body.removeClass('side-menu-visible');
+            overlay.fadeOut();
+            setTimeout(function() {
+                sideMenu.hide();
+                body.removeClass('overflow-hidden');
+            }, 400);
+        }
+    
+        slideOut();
+    
+    });
 
 });
 

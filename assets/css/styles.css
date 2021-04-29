@@ -248,7 +248,6 @@ footer .container,
 }
 
 .cardText {
-  min-height: 325px;
   background: white;
   border-radius: 20px;
   margin-top: -20px;
@@ -259,6 +258,15 @@ footer .container,
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+@media (min-width: 768px) {
+  .cardText {
+    min-height: 270px;
+  }
+  .cardTextArchive {
+    min-height: 290px;
+  }
 }
 
 .cardHorizontal {
@@ -566,9 +574,14 @@ footer .container,
   background-color: #4fa7f2;
 }
 
+.wpcf7 .ajax-loader {
+  display: none !important;
+}
+
 .wpcf7-not-valid-tip {
   font-size: 0.8rem !important;
-  margin-top: 4px;
+  margin-top: 12px !important;
+  margin-left: 8px !important;
 }
 
 .wpcf7-validation-errors {
@@ -583,6 +596,15 @@ footer .container,
   color: white !important;
   background: #4ca06d;
   border: 0 !important;
+}
+
+.wpcf7-response-output {
+  border: 0 !important;
+  text-align: center !important;
+  color: black !important;
+  background: #ffcc00;
+  padding: 12px !important;
+  border-radius: 14px;
 }
 
 /* Parceiros */
@@ -605,6 +627,9 @@ footer .container,
   display: flex;
   flex-direction: column;
   justify-content: center;
+  -webkit-box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease-out;
 }
 
@@ -649,7 +674,7 @@ footer img {
 }
 
 footer p {
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   margin-top: 20px;
   margin-bottom: 2px;
   text-align: center;
@@ -666,6 +691,10 @@ footer ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
+}
+
+footer li {
+  margin-top: 6px;
 }
 
 footer li a {
@@ -689,6 +718,17 @@ footer li a:hover {
   text-decoration: none;
 }
 
+footer a {
+  color: white;
+  text-decoration: none;
+  transition: all 0.3s ease-out;
+}
+
+footer a:hover {
+  color: #4fa7f2;
+  text-decoration: none;
+}
+
 footer .creditos {
   display: block;
   font-size: 0.65rem;
@@ -696,15 +736,10 @@ footer .creditos {
   margin-top: 32px;
 }
 
-#conteudo {
-  margin-top: -87px;
-  background: #eff8ff;
-  padding: 90px 6px 30px 6px;
-}
-
 /* Conteudo */
 
 #conteudo {
+  min-height: 600px;
   background-image: url(../../assets/img/backConteudo.png);
   background-repeat: no-repeat;
   background-position-x: calc(100% + 500px);
@@ -841,12 +876,14 @@ footer .creditos {
 
 .wp-pagenavi {
   clear: both;
+  margin-top: 12px;
+  margin-bottom: 24px;
 }
 
 .wp-pagenavi a,
 .wp-pagenavi span {
   color: #cccccc !important;
-  background: #482d6a;
+  background: #131d6f;
   text-decoration: none;
   border: 0px !important;
   border-radius: 5px;
@@ -859,8 +896,8 @@ footer .creditos {
 .wp-pagenavi a:hover,
 .wp-pagenavi span.current {
   text-decoration: none;
-  background: #7c3fcb;
-  border-color: #7c3fcb !important;
+  background: #4fa7f2;
+  border-color: #4fa7f2 !important;
 }
 
 .wp-pagenavi span.current {
@@ -873,7 +910,7 @@ article {
   min-height: 600px;
   margin-top: 24px;
   margin-bottom: 12px;
-  padding: 0;
+  padding: 0 15px;
 }
 
 article h1 {
@@ -885,7 +922,6 @@ article h2 {
   font-size: 1.5rem;
   font-weight: bold;
   color: #3965b3;
-  /* margin-top: -10px; */
 }
 
 .col .barraArtigo {
@@ -910,7 +946,6 @@ article .shareSocial i {
   font-size: 1.5rem;
   color: #3965b3;
   margin-left: 5px;
-  /* margin-bottom: 18px; */
   transition: all 0.3s ease-in;
 }
 
@@ -934,6 +969,27 @@ article p img {
   width: 100%;
   height: auto;
   border-radius: 6px;
+}
+
+article .wp-block-file {
+  font-size: 0.9rem;
+}
+
+article .wp-block-file__button {
+  font-size: 0.8rem !important;
+  font-weight: 400 !important;
+  color: white !important;
+  padding: 6px 16px !important;
+  text-transform: uppercase !important;
+  border-radius: 24px !important;
+  border: 0 !important;
+  background-color: #131d6f !important;
+  margin-top: 24px !important;
+  transition: all 0.3s ease-in;
+}
+
+article .wp-block-file__button:hover {
+  background-color: #4fa7f2 !important;
 }
 
 article ul li,
@@ -1099,7 +1155,7 @@ article .lastSingles {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 10px 30px;
+  padding: 30px 30px;
 }
 
 @media (min-width: 768px) {
@@ -1109,6 +1165,8 @@ article .lastSingles {
 }
 
 #parallax-image h1 {
+  max-width: 70%;
+  margin: 0 auto;
   color: white;
   font-size: 3rem;
   font-weight: bold;
@@ -1117,7 +1175,6 @@ article .lastSingles {
 }
 
 #conteudoTemplate {
-  /* margin-top: -87px; */
   background: #eff8ff;
   padding: 10px 20px 30px 20px;
 }
@@ -1674,6 +1731,49 @@ article .lastSingles {
     transform: translateX(0) rotateY(0) scale(1);
     -webkit-transform-origin: 600px 50%;
     transform-origin: 600px 50%;
+    opacity: 1;
+  }
+}
+
+.slide-in-bck-bottom {
+  -webkit-animation: slide-in-bck-bottom 0.6s
+    cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: slide-in-bck-bottom 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+/* ----------------------------------------------
+ * Generated by Animista on 2021-4-29 18:18:16
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * animation slide-in-bck-bottom
+ * ----------------------------------------
+ */
+@-webkit-keyframes slide-in-bck-bottom {
+  0% {
+    -webkit-transform: translateZ(700px) translateY(300px);
+    transform: translateZ(700px) translateY(300px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateZ(0) translateY(0);
+    transform: translateZ(0) translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes slide-in-bck-bottom {
+  0% {
+    -webkit-transform: translateZ(700px) translateY(300px);
+    transform: translateZ(700px) translateY(300px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateZ(0) translateY(0);
+    transform: translateZ(0) translateY(0);
     opacity: 1;
   }
 }

@@ -15,7 +15,7 @@
 	// - Validar os campos (https://docs.metabox.io/validation/)
 	// - Incluir logo abaixo dos campos de cada metabox os arrays Validation e Messages
 
-// Registra CTP Slider
+// Registra CTP Soluções
 function union_solucoes() {
 
 	$labels = array(
@@ -73,7 +73,7 @@ function union_solucoes() {
 
 add_action( 'init', 'union_solucoes', 0 );
 
-// Registra CTP Slider
+// Registra CTP Apresentações
 function union_apresentacoes() {
 
 	$labels = array(
@@ -130,64 +130,6 @@ function union_apresentacoes() {
 }
 
 add_action( 'init', 'union_apresentacoes', 0 );
-
-
-// Registra CTP Parceiros
-function union_parceiros() {
-
-	$labels = array(
-		'name'                  => _x( 'Parceiros', 'Post Type General Name', 'union' ),
-		'singular_name'         => _x( 'Parceiro', 'Post Type Singular Name', 'union' ),
-		'menu_name'             => __( 'Parceiros', 'union' ),
-		'name_admin_bar'        => __( 'Parceiro', 'union' ),
-		'archives'              => __( 'Arquivos do Item', 'union' ),
-		'attributes'            => __( 'Atributos do Item', 'union' ),
-		'parent_item_colon'     => __( 'Item Pai:', 'union' ),
-		'all_items'             => __( 'Todos os Items', 'union' ),
-		'add_new_item'          => __( 'Adicionar Novo Texto', 'union' ),
-		'add_new'               => __( 'Adicionar Novo', 'union' ),
-		'new_item'              => __( 'Novo Item', 'union' ),
-		'edit_item'             => __( 'Editar Item', 'union' ),
-		'update_item'           => __( 'Atualizar Item', 'union' ),
-		'view_item'             => __( 'Ver Item', 'union' ),
-		'view_items'            => __( 'Ver Itens', 'union' ),
-		'search_items'          => __( 'Procurar Item', 'union' ),
-		'not_found'             => __( 'Não encontrado', 'union' ),
-		'not_found_in_trash'    => __( 'Não encontrado na Lixeira', 'union' ),
-		'featured_image'        => __( 'Imagem Destacada', 'union' ),
-		'set_featured_image'    => __( 'Configurar imagem destacada', 'union' ),
-		'remove_featured_image' => __( 'Remover imagem destacada', 'union' ),
-		'use_featured_image'    => __( 'Usar como imagem destacada', 'union' ),
-		'insert_into_item'      => __( 'Inserir no item', 'union' ),
-		'uploaded_to_this_item' => __( 'Enviado para este item', 'union' ),
-		'items_list'            => __( 'Lista do item', 'union' ),
-		'items_list_navigation' => __( 'Navegação de lista dos itens', 'union' ),
-		'filter_items_list'     => __( 'Filtrar lista de itens', 'union' ),
-	);
-	$args = array(
-		'label'                 => __( 'Parceiro', 'union' ),
-		'description'           => __( 'Logomarca de parceiros', 'union' ),
-		'labels'                => $labels,
-		'supports'              => array( 'title', 'editor', 'excerpt', 'thumbnail'),
-		'taxonomies'            => array( ),
-		'hierarchical'          => false,
-		'public'                => true,
-		'show_ui'               => true,
-		'show_in_menu'          => true,
-		'menu_position'         => 5,
-		'show_in_admin_bar'     => true,
-		'show_in_nav_menus'     => true,
-		'can_export'            => true,
-		'has_archive'           => true,
-		'exclude_from_search'   => true,
-		'publicly_queryable'    => true,
-		'capability_type'       => 'post',
-	);
-	register_post_type( 'parceiros', $args );
-
-}
-
-add_action( 'init', 'union_parceiros', 0 );
 
 
 // Registra campos personalizados

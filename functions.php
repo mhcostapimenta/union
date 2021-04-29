@@ -32,8 +32,8 @@ function load_scripts(){
   wp_register_script('jquery', get_template_directory_uri().'/assets/js/jquery.min.js', null, '1.0', true );
 	wp_enqueue_script('scroll-slow', get_template_directory_uri().'/assets/js/scrollSlow.js', null, '1.0', true );	
 	wp_enqueue_script('scroll-to-top', get_template_directory_uri().'/assets/js/scroolToTop.js', null,  '1.0' , true );
+	wp_enqueue_script('better-nav-js', get_template_directory_uri().'/assets/js/betternav.js', null, '2', true );
 	wp_enqueue_script('main', get_template_directory_uri().'/assets/js/main.js', null,  '1.0' , true );
-	wp_enqueue_script('better-nav-js', 'https://unpkg.com/@bootstrapstudio/bootstrap-better-nav/dist/bootstrap-better-nav.min.js', null, '2', true );
 }
 
 // Dispara o Hook com os scripts e os estilos

@@ -1,30 +1,24 @@
-var $doc = jQuery('html, body');
-jQuery('.scrollSlow').click(function() {
+var $doc = $('html, body');
+$('.scrollSlow').click(function() {
     $doc.animate({
-        scrollTop: jQuery( jQuery.attr(this, 'href') ).offset().top
+        scrollTop: $( $.attr(this, 'href') ).offset().top
     }, 500);
     return false;
 });
 
-jQuery(document).ready(function(){    
-    //pego a url e verifico se tem ancora
+$(document).ready(function(){    
+    //pego a url e transformo em String
     var url = window.location.href.toString();
-    //console.log(url);
-    //testo se existe ancora na url    
 
+    //testo se existe alguma ancora na url    
     if(url.indexOf('#') != -1) {
-        //extraio a ancora
+        //se houver, extraio a ancora
         var ancora = url.substring(url.indexOf('#'));
-        //console.log(ancora);
-        altura = 110;
-        $target = jQuery(ancora);
-        //console.log($target);
-        jQuery('html, body').animate({        
-            'scrollTop': ($target.offset().top-altura)
-        }, 0, 'swing', function () {
-            //console.log($target.offset().top-altura);
-            window.location.hash = $target.offset().top-altura;
-
-        });
+        // referencio o elemento da ancora
+        $target = $(ancora);
+        // faço o scroll para a ancora.
+        $('html, body').animate({'scrollTop': ($target.offset().top)}, 500, 'swing');
+    } else {
+        $('body,html').scrollTop(0);
     }
-}); //fim do ready()
+});
