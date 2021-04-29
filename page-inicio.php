@@ -6,12 +6,12 @@
     <div class="container">
         <div class="row" id="topContent">
             <div class="col-12 col-md-6">
-                <h1 class="slide-in-left"><?php echo get_theme_mod('set_titulo_home');?></h1>
+                <h1 class="slide-in-left" style="animation-delay: .5s"><?php echo get_theme_mod('set_titulo_home');?></h1>
                 <p class="slide-in-left" style="animation-delay: .2s"><?php echo get_theme_mod('set_texto_empresa');?></p>
                 <a class="btn btn-primary scale-in-center" style="animation-delay: 1s" role="button" href="<?php echo get_bloginfo('url').'/empresa/'?>">Sobre a empresa<img src="<?php echo get_template_directory_uri().'/assets/img/iconeUnion.svg'?>"></a>
             </div>
             <div class="col d-none d-md-block">
-                <div class="puff-in-center" style="animation-delay: 1s">
+                <div class="slide-in-elliptic-right-bck" style="animation-delay: 1s">
                     <img class="img-fluid d-xl-flex justify-content-xl-center" src="<?php echo get_template_directory_uri().'/assets/img/iconeUnionTop.png'?>">
               </div>
             </div>
@@ -190,8 +190,8 @@
                     'posts_per_page'=> 6,
                     'post_type' => 'post',              // Tipo de post
                     'category_name' => 'projetos',
-                    'orderby' => 'publish_date',
-                    'order' => 'DESC'
+                    'orderby' => 'title',
+                    'order' => 'ASC'
                 );
 
                 $loop = new WP_Query( $args );
@@ -226,7 +226,7 @@
 
         <div class="row">
             <div class="col text-center">
-                <a class="btn btn-primary btnSection" role="button" href="<?php  echo get_bloginfo('url') . '/projetos/'; ?>">Todas os Projetos</a>
+                <a class="btn btn-primary btnSection" role="button" href="<?php  echo get_bloginfo('url') . '/projetos/'; ?>">Todos os Projetos</a>
             </div>
         </div>
     </div>

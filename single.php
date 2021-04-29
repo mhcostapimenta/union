@@ -10,8 +10,6 @@
         </div>
     </div>
 
-    <article>
-
         <!-- Conteúdo do Artigo -->
         <?php while( have_posts() ): the_post(); ?>
 
@@ -25,7 +23,7 @@
                 case "Artigos" :
                     $subtitle = '<h2>'.get_the_author( ).'</h2>';
                     $date = '<i class="fa fa-clock-o"></i><span>Data da publicação: '.get_the_date('d/m/Y').'</span>';
-                    $subtitleBox = 'Útlimos Artigos';
+                    $subtitleBox = 'Últimos Artigos';
                     $post_type = 'post';
                     $category_name = 'artigos';
                     $template_parts = 'thumb-single';
@@ -33,53 +31,48 @@
                 case "Projetos" :
                     $subtitle = '';
                     $date = '';
-                    $subtitleBox = 'Útlimos Projetos';
+                    $subtitleBox = 'Últimos Projetos';
                     $post_type = 'post';
                     $category_name = 'projetos';
-                    $template_parts = 'thumb-single';
+                    $template_parts = 'thumb-single-projetos';
                     break;
                 default: 
                     $subtitle = '<h2>'.rwmb_meta( 'union-nomeEvento' ).'</h2>';
                     $date = '<i class="fa fa-clock-o"></i><span>Data do evento: '.convertToDate(rwmb_meta( 'union-dataEvento' )).'</span>'; 
-                    $subtitleBox = 'Útlimas Apresentações';
+                    $subtitleBox = 'Últimas Apresentações';
                     $post_type = 'apresentacoes'; 
                     $category_name = '';
                     $template_parts = 'thumb-single-apresentacoes'; 
             }
+
+            // Compartilhamento Redes Sociais
+            require('inc/socialshare.php');
         ?>
 
-        <div class="container">
+    <!-- Conteúdo da página -->
+    <?php 
+        if ($category_name !== 'projetos' ) {
+    ?>
 
-            <!-- Título da Publicação -->
-            <h1><?php the_title(); ?></h1>
+        <div id="parallax-image" style="background-image: url(<?php echo get_the_post_thumbnail_url(); ?>)">
+            <h1 class="tracking-in-expand-fwd-bottom"><?php the_title(); ?></h1>
+        </div>
 
-            <!-- Mostra o subtítulo <h2> de acordo com o conteúdo da página -->
-            <?php echo $subtitle; ?>
+        <article>
+            <div class="container">
 
-            <div class="row">
-                <div class="col">
-                    <div class="flex-row barraArtigo">
-                        <div class="data">
-                            <!-- Mostra a data de acordo com o conteúdo da página -->
-                            <?php echo $date ?>
-                        </div>
+    <?php 
+        } else {
+    ?>
 
-                        <!-- Compartilhamento Redes Sociais -->
-                        <?php require('inc/socialshare.php'); ?>
+        <article>
+                <div class="container">
 
-                        <div class="shareSocial">
-                            <a href="<?php echo $stringFacebook; ?>"><i class="fa fa-facebook-square"></i></a>
-                            <a href="<?php echo $stringTwitter; ?>"><i class="fa fa-twitter-square"></i></a>
-                            <a href="<?php echo $stringLinkedin; ?>"><i class="fa fa-linkedin-square"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Imagem de destaque -->
-            <div class="row">
-                <div class="col-12"><img class="img-fluid imgDestaque" src="<?php echo get_the_post_thumbnail_url(); ?>"></div>
-            </div>
+                    <h1 class="tracking-in-expand-fwd-bottom mb-3"><?php the_title(); ?></h1>
+    
+    <?php
+        }
+    ?>
 
             <!-- Conteúdo em duas colunas -->
             <div class="row">
@@ -87,14 +80,45 @@
                 <!-- Coluna da esquerda -->
                 <div class="col-12 col-md-7 order-2 order-md-1">
 
-                    <!-- Conteúdo do Post -->
-                    <?php the_content(); ?>
+                <!-- Mostra o subtítulo <h2> de acordo com o conteúdo da página -->
+                <?php echo $subtitle; ?>
 
-                    <div>
-                        <!-- Carrega as tags do artigo -->
-                        <?php echo get_the_tag_list('<div class="botaoCategoria">','','</div>'); ?>
+                <div class="flex-row barraArtigo">
+                    <!-- Mostra a data de acordo com o conteúdo da página -->
+                    <div class="data">                     
+                        <?php echo $date ?>
                     </div>
+
+                    <?php 
+                        if ($category_name !== 'projetos' ) {
+                    ?>
+
+                    <!-- Compartilhamento Redes Sociais -->
+                    <div class="shareSocial text-right">
+                        <a href="<?php echo $stringFacebook; ?>"><i class="fa fa-facebook-square"></i></a>
+                        <a href="<?php echo $stringTwitter; ?>"><i class="fa fa-twitter-square"></i></a>
+                        <a href="<?php echo $stringLinkedin; ?>"><i class="fa fa-linkedin-square"></i></a>
+                    </div>
+                    <hr>
+
+                    <?php
+                            }
+                    ?>
+
                 </div>
+
+                
+
+
+
+                <!-- Conteúdo do Post -->
+                <?php the_content(); ?>
+
+                <div>
+                    <!-- Carrega as tags do artigo -->
+                    <?php echo get_the_tag_list('<div class="botaoCategoria">','','</div>'); ?>
+                </div>
+            </div>
 
                 <!-- Fim do conteudo do artigo -->
                 <?php 
@@ -113,7 +137,7 @@
                         <div class="row">
                             <div class="col">
 
-			                <!-- Aqui entra o loop Wordpress para mostrar os 3 últimos artigos -->
+			                <!-- Aqui entra o loop Wordpress para mostrar os 5 últimos posts -->
 			                <?php
 
 			                    $args = array(
