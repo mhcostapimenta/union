@@ -910,7 +910,7 @@ article {
   min-height: 600px;
   margin-top: 24px;
   margin-bottom: 12px;
-  padding: 0 15px;
+  padding: 0 10px;
 }
 
 article h1 {
@@ -972,19 +972,17 @@ article p img {
 }
 
 article .wp-block-file {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
 article .wp-block-file__button {
   font-size: 0.8rem !important;
   font-weight: 400 !important;
   color: white !important;
-  padding: 6px 16px !important;
-  text-transform: uppercase !important;
+  padding: 6px 8px !important;
   border-radius: 24px !important;
   border: 0 !important;
   background-color: #131d6f !important;
-  margin-top: 24px !important;
   transition: all 0.3s ease-in;
 }
 
@@ -1155,7 +1153,7 @@ article .lastSingles {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 30px 30px;
+  padding: 30px 20px;
 }
 
 @media (min-width: 768px) {
@@ -1776,4 +1774,9 @@ article .lastSingles {
     transform: translateZ(0) translateY(0);
     opacity: 1;
   }
+}
+
+/* Esconder o ReCaptcha */
+.grecaptcha-badge {
+  visibility: hidden;
 }
