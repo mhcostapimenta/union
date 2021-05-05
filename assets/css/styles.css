@@ -460,6 +460,10 @@ footer .container,
 #artigos {
   width: 100%;
   background: white;
+  background-image: url(../../assets/img/backgroundLogo.png);
+  background-repeat: no-repeat;
+  background-position-x: calc(-320px);
+  background-position-y: calc(- 20px);
   padding-top: 42px;
   padding-right: 20px;
   padding-bottom: 42px;
@@ -500,7 +504,7 @@ footer .container,
   background-image: url(../../assets/img/backgroundLogo.png);
   background-repeat: no-repeat;
   background-position-x: calc(100% + 320px);
-  background-position-y: calc(100% + 320px);
+  background-position-y: calc(100% - 60px);
   padding-top: 42px;
   padding-right: 20px;
   padding-bottom: 42px;
@@ -512,10 +516,10 @@ footer .container,
 #contato {
   width: 100%;
   background: #dbefff;
-  background-image: url(../../assets/img/backgroundLogo.png);
+  /* background-image: url(../../assets/img/backgroundLogo.png);
   background-repeat: no-repeat;
   background-position-x: calc(100% + 319px);
-  background-position-y: -312px;
+  background-position-y: -312px; */
   padding-top: 42px;
   padding-right: 20px;
   padding-bottom: 42px;

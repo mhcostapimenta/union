@@ -43,7 +43,7 @@
                 case "Parceiros" :
                     $subtitle = '';
                     $date = '';
-                    $subtitleBox = 'Últimos Parceiros';
+                    $subtitleBox = 'Parceiros';
                     $post_type = 'post';
                     $orderby = 'publish_date';
                     $order = 'DESC';

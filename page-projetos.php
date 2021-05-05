@@ -37,8 +37,8 @@
                             query_posts( array( 'post_type' => 'post',
                             'posts_per_page'=> 12,
                             'category_name' => 'projetos',
-                            'orderby' => 'title',
-                            'order' => 'ASC',
+                            'orderby' => 'publish_date',
+                            'order' => 'DESC',
                             'paged' => get_query_var( 'paged' ) ) );
 		             
 	                    	while ( have_posts() ) : the_post();
