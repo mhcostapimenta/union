@@ -15,10 +15,10 @@
         <!-- <div class="cardTextHorizontal"> -->
             <div class="cardTextHorizontalContent">
                 <span class="cardCategoria"><?php the_tags('',' | ',''); ?></span>
-                <h1><strong><?php the_title(); ?></strong></h1>
+                <h3><strong><?php the_title(); ?></strong></h3>
                 <p><?php echo $resumo; ?></p>
             </div>
-            <div class="text-right"><a class="btn btn-primary btnCard" role="button" href="<?php the_permalink(); ?>">Ler</a></div>
+            <div class="text-end"><a class="btn btn-primary btnCard" role="button" href="<?php the_permalink(); ?>"><?php union_the_string('Ler'); ?></a></div>
         <!-- </div> -->
     </div>
 </div>

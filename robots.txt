@@ -1,0 +1,17 @@
+User-agent: *
+Disallow: /wp-admin/
+Allow: /wp-admin/admin-ajax.php
+
+# Otimização de Busca (Evita desperdício de crawl budget)
+Disallow: /?s=
+Disallow: /search/
+Disallow: /author/
+
+# Segurança e arquivos de sistema
+Disallow: /readme.html
+Disallow: /license.txt
+Disallow: /wp-config.php
+Disallow: /wp-mail.php
+
+# Caminho oficial para o Sitemap do WordPress
+Sitemap: https://union.com.br/wp-sitemap.xml

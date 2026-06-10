@@ -10,7 +10,7 @@
 <!-- Conteúdo do Thumb -->
 <div class="thumbs">
    
-    <img src="<?php  echo $img_url; ?>">
+    <img src="<?php  echo $img_url; ?>" alt="Imagem do <?php the_title(); ?>">
     <div>
         <?php the_tags('<span class="categorias">',' | ','</span>'); ?>
         <a href="<?php the_permalink(); ?>">
@@ -18,7 +18,7 @@
         </a>
         <a href="<?php the_permalink(); ?>">
             <h2><?php echo rwmb_meta( 'union-nomeEvento' ); ?></h2>
-            <p><i class="fa fa-clock-o"></i> <?php echo convertToDate(rwmb_meta( 'union-dataEvento' )); ?></p>
+            <p><i class="fa fa-calendar"></i> <?php echo convertToDate(rwmb_meta( 'union-dataEvento' )); ?></p>
         </a>
     </div>
 </div>

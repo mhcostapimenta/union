@@ -28,7 +28,15 @@
         <div class="row">
             <div class="col">
                 <div class="container">
-                    <h1>Apresentações</h1>
+                    <h1 class="titulo-secao"><?php union_the_string('Resultados para:'); ?> <?php echo single_tag_title('', false); ?></h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="container">
+                    <h2 class="titulo-secao"><?php union_the_string('Apresentações'); ?></h2>
                 </div>
             </div>
         </div>
@@ -49,7 +57,7 @@
                         <!-- Aqui entra o loop Wordpress para mostrar os Thumbs das Apresentações -->
                         <?php
 
-                            query_posts( array( 'post_type' => 'apresentacoes',
+                            $tag_apresentacoes_query = new WP_Query( array( 'post_type' => 'apresentacoes',
                             'tax_query' => array(
                               array(
                                   'taxonomy' => 'post_tag',
@@ -60,8 +68,8 @@
                             'orderby' => 'publish_date',
                             'paged' => get_query_var( 'paged' ) ) );
 
-                            if (have_posts(  )) {
-                                while ( have_posts() ) : the_post();
+                            if ($tag_apresentacoes_query->have_posts(  )) {
+                                while ( $tag_apresentacoes_query->have_posts() ) : $tag_apresentacoes_query->the_post();
 
                                   // Carrega o template com os thumbs
                                   get_template_part( 'template-parts/content', 'thumb-apresentacoes');
@@ -73,7 +81,7 @@
                             } else {
                               ?>
                               <div class="msgBusca">
-                                <p>Nenhum item encontrado com a TAG selecionada!</p>
+                                <p><?php union_the_string('Nenhum item encontrado com a TAG selecionada!'); ?></p>
                               </div>
                               <?php
                             }	                    
@@ -89,7 +97,7 @@
             <div class="col">
                 <div class="wp-pagenavi text-center" role="navigation">
                     <!-- Carregar paginação caso haja necessidade -->
-                    <?php if(function_exists('wp_pagenavi')) { wp_pagenavi(); } ?>               
+                    <?php if(function_exists('wp_pagenavi')) { wp_pagenavi( array( 'query' => $tag_apresentacoes_query ) ); } ?>               
                 </div>
         </div>
     </section>
@@ -100,7 +108,7 @@
         <div class="row">
             <div class="col">
                 <div class="container">
-                    <h1>Artigos</h1>
+                    <h2 class="titulo-secao"><?php union_the_string('Artigos'); ?></h2>
                 </div>
             </div>
         </div>
@@ -121,7 +129,7 @@
                     <!-- Aqui entra o loop Wordpress para mostrar os Thumbs dos artigos -->
                     <?php
 
-                            query_posts( array( 'post_type' => 'post',
+                            $tag_artigos_query = new WP_Query( array( 'post_type' => 'post',
                             'category_name' => 'artigos',
                             'tax_query' => array(
                               array(
@@ -133,8 +141,8 @@
                             'orderby' => 'publish_date', 
                             'paged' => get_query_var( 'paged' ) ) );
 
-                        if (have_posts(  )) {
-                          while ( have_posts() ) : the_post();
+                        if ($tag_artigos_query->have_posts(  )) {
+                          while ( $tag_artigos_query->have_posts() ) : $tag_artigos_query->the_post();
 
                             // Carrega o template com os thumbs
                             get_template_part( 'template-parts/content', 'thumb-artigos');
@@ -146,7 +154,7 @@
                         } else {
                           ?>
                           <div class="msgBusca">
-                            <p>Nenhum item encontrado com a TAG selecionada!</p>
+                            <p><?php union_the_string('Nenhum item encontrado com a TAG selecionada!'); ?></p>
                           </div>
                           <?php
                         }	                    
@@ -162,7 +170,7 @@
             <div class="col">
                 <div class="wp-pagenavi text-center" role="navigation">
                     <!-- Carregar paginação caso haja necessidade -->
-                    <?php if(function_exists('wp_pagenavi')) { wp_pagenavi(); } ?>               
+                    <?php if(function_exists('wp_pagenavi')) { wp_pagenavi( array( 'query' => $tag_artigos_query ) ); } ?>               
                 </div>
         </div>
 
@@ -174,7 +182,7 @@
               <div class="row">
                   <div class="col">
                       <div class="container">
-                          <h1>Projetos</h1>
+                          <h2 class="titulo-secao"><?php union_the_string('Projetos'); ?></h2>
                       </div>
                   </div>
               </div>
@@ -195,7 +203,7 @@
                           <!-- Aqui entra o loop Wordpress para mostrar os Thumbs dos artigos -->
                           <?php
 
-                                  query_posts( array( 'post_type' => 'post',
+                                  $tag_projetos_query = new WP_Query( array( 'post_type' => 'post',
                                   'category_name' => 'projetos',
                                   'tax_query' => array(
                                     array(
@@ -207,9 +215,9 @@
                                   'orderby' => 'publish_date', 
                                   'paged' => get_query_var( 'paged' ) ) );
 
-                              if (have_posts(  )) {
+                              if ($tag_projetos_query->have_posts(  )) {
 
-                                  while ( have_posts() ) : the_post();
+                                  while ( $tag_projetos_query->have_posts() ) : $tag_projetos_query->the_post();
 
                                     // Carrega o template com os thumbs
                                     get_template_part( 'template-parts/content', 'thumb-projetos');
@@ -221,7 +229,7 @@
                               } else {
                                   ?>
                                   <div class="msgBusca">
-                                    <p>Nenhum item encontrado com a TAG selecionada!</p>
+                                    <p><?php union_the_string('Nenhum item encontrado com a TAG selecionada!'); ?></p>
                                   </div>
                                   <?php
                                 }	                    
@@ -237,7 +245,7 @@
                   <div class="col">
                       <div class="wp-pagenavi text-center" role="navigation">
                           <!-- Carregar paginação caso haja necessidade -->
-                          <?php if(function_exists('wp_pagenavi')) { wp_pagenavi(); } ?>               
+                          <?php if(function_exists('wp_pagenavi')) { wp_pagenavi( array( 'query' => $tag_projetos_query ) ); } ?>               
                       </div>
               </div>
 

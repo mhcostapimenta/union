@@ -6,14 +6,14 @@
  ?>
 
 <!-- Conteúdo do Thumb -->
-<div class="thumbs"><img src="<?php  echo $img_url; ?>">
+<div class="thumbs"><img src="<?php  echo $img_url; ?>" alt="Imagem do <?php the_title(); ?>">
     <div>
         <?php the_tags('<span class="categorias">',' | ','</span>'); ?>
         <a href="<?php the_permalink(); ?>">
             <h1><?php the_title(); ?></h1>
         </a>
         <a href="<?php the_permalink(); ?>">
-            <p><i class="fa fa-clock-o"></i> <?php echo get_the_date('d/m/Y'); ?></p>
+            <p><i class="fa fa-calendar"></i> <?php echo get_the_date('d/m/Y'); ?></p>
         </a>
     </div>
 </div>

@@ -1,3 +1,4 @@
+<?php /* Template Name: Página Projetos */ ?>
 <!-- Carrega o cabeçalho -->
 <?php get_header(); ?> 
 
@@ -13,7 +14,7 @@
         <div class="row">
             <div class="col">
                 <div class="container">
-                    <h1>Projetos</h1>
+                    <h1 class="titulo-secao"><?php union_the_string('Projetos'); ?></h1>
                 </div>
             </div>
         </div>
@@ -34,14 +35,12 @@
 		                <!-- Aqui entra o loop Wordpress para mostrar os Thumbs dos artigos -->
 		                <?php
 
-                            query_posts( array( 'post_type' => 'post',
+                            $projetos_query = new WP_Query( array( 'post_type' => 'post',
                             'posts_per_page'=> 12,
-                            'category_name' => 'projetos',
-                            'orderby' => 'publish_date',
-                            'order' => 'DESC',
+                            'category_name' => union_get_cat_slug('projetos'),
                             'paged' => get_query_var( 'paged' ) ) );
 		             
-	                    	while ( have_posts() ) : the_post();
+	                    	while ( $projetos_query->have_posts() ) : $projetos_query->the_post();
 
 	                        // Carrega o template com os thumbs
 	                        get_template_part( 'template-parts/content', 'thumb-projetos-archive');
@@ -62,7 +61,7 @@
             <div class="col">
                 <div class="wp-pagenavi text-center" role="navigation">
                     <!-- Carregar paginação caso haja necessidade -->
-                    <?php if(function_exists('wp_pagenavi')) { wp_pagenavi(); } ?>               
+                    <?php if(function_exists('wp_pagenavi')) { wp_pagenavi( array( 'query' => $projetos_query ) ); } ?>               
                 </div>
         </div>
 

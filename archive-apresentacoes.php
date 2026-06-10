@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col">
                 <div class="container">
-                    <h1>Apresentações</h1>
+                    <h1 class="titulo-secao"><?php union_the_string('Apresentações em Eventos'); ?></h1>
                 </div>
             </div>
         </div>
@@ -34,11 +34,11 @@
                         <!-- Aqui entra o loop Wordpress para mostrar os Thumbs dos artigos -->
                         <?php
 
-                            query_posts( array( 'post_type' => 'apresentacoes',
-                            'orderby' => 'publish_date', 
+                            $apresentacoes_query = new WP_Query( array( 'post_type' => 'apresentacoes',
+                            'lang' => pll_current_language(),
                             'paged' => get_query_var( 'paged' ) ) );
                     
-                            while ( have_posts() ) : the_post();
+                            while ( $apresentacoes_query->have_posts() ) : $apresentacoes_query->the_post();
 
                               // Carrega o template com os thumbs
                               get_template_part( 'template-parts/content', 'thumb-archive-apresentacoes');
@@ -59,7 +59,7 @@
             <div class="col">
                 <div class="wp-pagenavi text-center" role="navigation">
                     <!-- Carregar paginação caso haja necessidade -->
-                    <?php if(function_exists('wp_pagenavi')) { wp_pagenavi(); } ?>               
+                    <?php if(function_exists('wp_pagenavi')) { wp_pagenavi( array( 'query' => $apresentacoes_query ) ); } ?>               
                 </div>
         </div>
 

@@ -4,5 +4,5 @@
  ?>
 
 <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-	<div class="logo"><img src="<?php echo $img_url; ?>"></div>
+	<div class="logo"><img src="<?php echo $img_url; ?>" alt="Logo <?php the_title(); ?>" loading="lazy" decoding="async"></div>
 </div>

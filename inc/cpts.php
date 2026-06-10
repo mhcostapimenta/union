@@ -146,30 +146,18 @@ function union_get_meta_box( $meta_boxes ) {
 		'autosave' => 'true',
 		'fields' => array(
 			array(
-				'id' => $prefix . 'txtSolucao',
-				'type' => 'textarea',
-				'name' => esc_html__( 'Texto sobre a solução', 'union' ),
-				'placeholder' => esc_html__( 'Digite o texto da solução', 'union' ),
-				'rows' => 5,
-				'cols' => 1,
-			),
-			array(
 				'id' => $prefix . 'txtSolucaoBack',
 				'type' => 'textarea',
 				'name' => esc_html__( 'Texto do verso sobre a solução', 'union' ),
 				'placeholder' => esc_html__( 'Digite o texto do verso da solução', 'union' ),
 				'rows' => 5,
-				'cols' => 1,
+				'cols' => 60,
 			),
 		),
 
     // Regras de validação do text area das Soluções
     'validation' => array( 
       'rules'  => array(
-            'union-txtSolucao' => array(
-                'required'  => true,
-                'maxlength' => 700,
-          ),
 					'union-txtSolucaoBack' => array(
 						'required'  => true,
 						'maxlength' => 700,
@@ -178,10 +166,6 @@ function union_get_meta_box( $meta_boxes ) {
 
     // Mensagens de erro do text area das Soluções
       'messages'  => array(
-        'union-txtSolucao' => array(
-            'required'  => 'O texto da solução é obrigatório',
-            'maxlength' => 'Tamanho máximo é de 700 caracteres',
-        ),
 				'union-txtSolucaoBack' => array(
 					'required'  => 'O texto do verso da solução é obrigatório',
 					'maxlength' => 'Tamanho máximo é de 700 caracteres',

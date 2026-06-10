@@ -16,12 +16,20 @@
         <div class="cardText cardTextArchive">
             <div>
                 <span class="cardCategoria"><?php echo the_tags('',' | ',''); ?></span>
-                <h1><strong><?php echo the_title(); ?></strong></h1>
-                <h2><?php echo rwmb_meta( 'union-nomeEvento' ); ?></h2>
-                <span class="cardData"><i class="fa fa-clock-o"></i><?php echo convertToDate(rwmb_meta( 'union-dataEvento' )); ?></span>
+                <h3><strong><?php echo the_title(); ?></strong></h3>
+                <?php
+                $nome_evento = rwmb_meta( 'union-nomeEvento' );
+                if ( ! empty( $nome_evento ) ) {
+                    echo '<h4>' . esc_html( $nome_evento ) . '</h4>';
+                }
+                
+                $data_evento = rwmb_meta( 'union-dataEvento' );
+                $data_exibicao = ! empty( $data_evento ) ? convertToDate( $data_evento ) : get_the_date( 'd/m/Y' );
+                ?>
+                <span class="cardData"><i class="fa fa-calendar"></i><?php echo $data_exibicao; ?></span>
                 <p><?php echo $resumo; ?></p>
             </div>
-            <div class="text-right"><a class="btn btn-primary btnCard" role="button" href="<?php echo the_permalink(); ?>">Ler</a></div>
+            <div class="text-end"><a class="btn btn-primary btnCard" role="button" href="<?php echo the_permalink(); ?>"><?php union_the_string('Ler'); ?></a></div>
         </div>
     </div>
 </div>

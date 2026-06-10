@@ -10,189 +10,197 @@
         </div>
     </div>
 
-        <!-- Conteúdo do Artigo -->
-        <?php while( have_posts() ): the_post(); ?>
+    <!-- Conteúdo do Artigo -->
+    <?php while (have_posts()):
+        the_post(); ?>
 
         <!-- Detecta conteúdo da página e faz todas as adaptações -->
         <?php
-            // Detecta o nome da categoria do post
-            $cat = get_the_category()[0]->cat_name;
+        // Detecta o slug da categoria do post para melhor compatibilidade com Polylang
+        $categories = get_the_category();
+        $cat_slug = !empty($categories) ? $categories[0]->slug : '';
 
-            // Determina o conteúdo da página de acordo com a categoria do post
-            switch ($cat) {
-                case "Artigos" :
-                    $subtitle = '<h2>'.get_the_author( ).'</h2>';
-                    $date = '<i class="fa fa-clock-o"></i><span>Data da publicação: '.get_the_date('d/m/Y').'</span>';
-                    $subtitleBox = 'Últimos Artigos';
-                    $post_type = 'post';
-                    $orderby = 'publish_date';
-                    $order = 'DESC';
-                    $category_name = 'artigos';
-                    $template_parts = 'thumb-single';
-                    break;               
-                case "Projetos" :
-                    $subtitle = '';
-                    $date = '';
-                    $subtitleBox = 'Últimos Projetos';
-                    $post_type = 'post';
-                    $orderby = 'publish_date';
-                    $order = 'DESC';
-                    $category_name = 'projetos';
-                    $template_parts = 'thumb-single-projetos';
-                    break;
-                case "Parceiros" :
-                    $subtitle = '';
-                    $date = '';
-                    $subtitleBox = 'Parceiros';
-                    $post_type = 'post';
-                    $orderby = 'publish_date';
-                    $order = 'DESC';
-                    $category_name = 'parceiros';
-                    $template_parts = 'thumb-single-projetos';
-                    break;
-                default: 
-                    $subtitle = '<h2>'.rwmb_meta( 'union-nomeEvento' ).'</h2>';
-                    $date = '<i class="fa fa-clock-o"></i><span>Data do evento: '.convertToDate(rwmb_meta( 'union-dataEvento' )).'</span>'; 
-                    $subtitleBox = 'Últimas Apresentações';
-                    $post_type = 'apresentacoes';
-                    $orderby = 'publish_date';
-                    $order = 'DESC';
-                    $category_name = '';
-                    $template_parts = 'thumb-single-apresentacoes'; 
-            }
+        // Determina o conteúdo da página de acordo com a categoria do post
+        switch ($cat_slug) {
+            case "artigos":
+            case "articles":
+                $subtitle = '<h2>' . get_the_author() . '</h2>';
+                $date = '<i class="fa fa-calendar"></i><span>' . get_the_date('d/m/Y') . '</span>';
+                $subtitleBox = union_get_string('Últimos Artigos');
+                $post_type = 'post';
+                $orderby = 'publish_date';
+                $order = 'DESC';
+                $category_name = 'artigos';
+                $template_parts = 'thumb-single';
+                break;
+            case "projetos":
+            case "projects":
+                $subtitle = '';
+                $date = '';
+                $subtitleBox = union_get_string('Últimos Projetos');
+                $post_type = 'post';
+                $orderby = 'publish_date';
+                $order = 'DESC';
+                $category_name = 'projetos';
+                $template_parts = 'thumb-single-projetos';
+                break;
+            case "parceiros":
+            case "partners":
+                $subtitle = '';
+                $date = '';
+                $subtitleBox = union_get_string('Parceiros');
+                $post_type = 'post';
+                $orderby = 'publish_date';
+                $order = 'DESC';
+                $category_name = 'parceiros';
+                $template_parts = 'thumb-single-projetos';
+                break;
+            default:
+                $subtitle = '<h2>' . rwmb_meta('union-nomeEvento') . '</h2>';
+                $date = '<i class="fa fa-calendar"></i><span>' . convertToDate(rwmb_meta('union-dataEvento')) . '</span>';
+                $subtitleBox = union_get_string('Últimas Apresentações');
+                $post_type = 'apresentacoes';
+                $orderby = 'publish_date';
+                $order = 'DESC';
+                $category_name = '';
+                $template_parts = 'thumb-single-apresentacoes';
+        }
 
-            // Compartilhamento Redes Sociais
-            require('inc/socialshare.php');
+        // Compartilhamento Redes Sociais
+        require('inc/socialshare.php');
         ?>
 
-    <!-- Conteúdo da página -->
-    <?php 
-        if ($category_name == 'projetos' ||  $category_name == 'parceiros') {
-    ?>
+        <!-- Conteúdo da página -->
+        <?php
+        if ($category_name == 'projetos' || $category_name == 'parceiros') {
+            ?>
 
-        <article>
-            <div class="container">
-                <h1 class="tracking-in-expand-fwd-bottom mb-3"><?php the_title(); ?></h1>
+            <article>
+                <div class="container">
+                    <h1 class="tracking-in-expand-fwd-bottom mb-3"><?php the_title(); ?></h1>
 
-    <?php 
+                <?php
         } else {
-    ?>
+            ?>
 
-        <div id="parallax-image" style="background-image: url(<?php echo get_the_post_thumbnail_url(); ?>)">
-                    <h1 class="tracking-in-expand-fwd-bottom"><?php the_title(); ?></h1>
-                </div>
+                    <div id="parallax-image" style="background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(<?php echo get_the_post_thumbnail_url(); ?>)">
+                        <h1 class="tracking-in-expand-fwd-bottom"><?php the_title(); ?></h1>
+                    </div>
 
-                <article>
-                    <div class="container">
-    
-    <?php
+                    <article>
+                        <div class="container">
+
+                            <?php
         }
+        ?>
+
+                        <!-- Conteúdo em duas colunas -->
+                        <div class="row">
+
+                            <!-- Coluna da esquerda -->
+                            <div class="col-12 col-md-7 order-2 order-md-1">
+
+                                <!-- Mostra o subtítulo <h2> de acordo com o conteúdo da página -->
+                                <?php echo $subtitle; ?>
+
+                                <div class="flex-row barraArtigo">
+                                    <!-- Mostra a data de acordo com o conteúdo da página -->
+                                    <div class="data">
+                                        <?php echo $date ?>
+                                    </div>
+
+                                    <?php
+                                    if ($category_name !== 'projetos' && $category_name !== 'parceiros') {
+                                        ?>
+
+                                        <!-- Compartilhamento Redes Sociais -->
+                                        <div class="shareSocial text-end">
+                                            <a href="<?php echo $stringFacebook; ?>" target="_blank"
+                                                rel="noopener noreferrer"><i class="fa fa-facebook-square"></i></a>
+                                            <a href="<?php echo $stringLinkedin; ?>" target="_blank"
+                                                rel="noopener noreferrer"><i class="fa fa-linkedin-square"></i></a>
+                                            <a href="<?php echo $stringWhatsapp; ?>" target="_blank"
+                                                rel="noopener noreferrer"><i class="fa fa-whatsapp"></i></a>
+                                        </div>
+                                        <hr>
+
+                                        <?php
+                                    }
+                                    ?>
+
+                                </div>
+
+                                <!-- Conteúdo do Post -->
+                                <?php the_content(); ?>
+
+                                <div>
+                                    <!-- Carrega as tags do artigo -->
+                                    <?php echo get_the_tag_list('<div class="botaoCategoria">', '', '</div>'); ?>
+                                </div>
+
+                                <!-- Fim do conteudo do artigo -->
+                            <?php
+    endwhile;
+    wp_reset_postdata();
     ?>
 
-            <!-- Conteúdo em duas colunas -->
-            <div class="row">
-
-                <!-- Coluna da esquerda -->
-                <div class="col-12 col-md-7 order-2 order-md-1">
-
-                    <!-- Mostra o subtítulo <h2> de acordo com o conteúdo da página -->
-                    <?php echo $subtitle; ?>
-
-                    <div class="flex-row barraArtigo">
-                        <!-- Mostra a data de acordo com o conteúdo da página -->
-                        <div class="data">                     
-                            <?php echo $date ?>
                         </div>
 
-                        <?php 
-                            if ($category_name !== 'projetos' &&  $category_name !== 'parceiros' ) {
-                        ?>
+                        <!-- Coluna da direita -->
+                        <div class="col-12 col-md-5 order-1 order-md-2">
+                            <div class="lastSingles">
 
-                        <!-- Compartilhamento Redes Sociais -->
-                        <div class="shareSocial text-right">
-                            <a href="<?php echo $stringFacebook; ?>"><i class="fa fa-facebook-square"></i></a>
-                            <a href="<?php echo $stringTwitter; ?>"><i class="fa fa-twitter-square"></i></a>
-                            <a href="<?php echo $stringLinkedin; ?>"><i class="fa fa-linkedin-square"></i></a>
-                        </div>
-                        <hr>
+                                <!-- Carrega o subtitítulo h3 de acordo com o conteúdo da página -->
+                                <h3><?php echo $subtitleBox; ?></h3>
 
-                        <?php
-                                }
-                        ?>
+                                <!-- Thumbs dos posts -->
+                                <div class="row">
+                                    <div class="col">
 
-                    </div>
+                                        <!-- Aqui entra o loop Wordpress para mostrar os 5 últimos posts -->
+                                        <?php
 
-                    <!-- Conteúdo do Post -->
-                    <?php the_content(); ?>
+                                        $args = array(
+                                            'posts_per_page' => 5,
+                                            'post_type' => $post_type,
+                                            'category_name' => $category_name,
+                                            'orderby' => $orderby,
+                                            'order' => $order
+                                        );
 
-                    <div>
-                        <!-- Carrega as tags do artigo -->
-                        <?php echo get_the_tag_list('<div class="botaoCategoria">','','</div>'); ?>
-                    </div>
+                                        $loop = new WP_Query($args);
 
-                    <!-- Fim do conteudo do artigo -->
-                    <?php 
-                        endwhile;
-                        wp_reset_postdata();
-                    ?>
-                    
-                </div>
+                                        if ($loop->have_posts()):
 
-                <!-- Coluna da direita -->
-                <div class="col-12 col-md-5 order-1 order-md-2">
-                    <div class="lastSingles">
+                                            while ($loop->have_posts()):
+                                                $loop->the_post();
 
-                        <!-- Carrega o subtitítulo h3 de acordo com o conteúdo da página -->
-                        <h3><?php echo $subtitleBox; ?></h3>
+                                                // Carrega o template com os thumbs
+                                                get_template_part('template-parts/content', $template_parts);
 
-                        <!-- Thumbs dos posts -->
-                        <div class="row">
-                            <div class="col">
+                                            endwhile;
+                                            wp_reset_postdata();
+                                            // Aqui termina o loop Wordpress
+                                        
+                                        else:
+                                            ?>
 
-			                <!-- Aqui entra o loop Wordpress para mostrar os 5 últimos posts -->
-			                <?php
+                                            <p><?php union_the_string('Nada encontrado ainda ...'); ?></p>
 
-			                    $args = array(
-			                        'posts_per_page'=> 5,
-                                    'post_type' => $post_type,
-                                    'category_name' => $category_name,             
-                                    'orderby' => $orderby,
-                                    'order' => $order
-			                    );
+                                            <?php
+                                            // Fim do if do loop Wordpress
+                                        endif;
+                                        ?>
 
-			                    $loop = new WP_Query( $args );
-
-			                        if ( $loop->have_posts() ):
-
-			                            while ( $loop->have_posts() ): 
-			                            	$loop->the_post();
-			              
-			                                // Carrega o template com os thumbs
-			                                get_template_part( 'template-parts/content', $template_parts);
-
-			                    endwhile;
-			                    wp_reset_postdata();
-			                    // Aqui termina o loop Wordpress
-
-                                else:
-			                 ?>
-
-			                 <p>Nada encontratdo ainda ...</p>
-			                 
-			                 <?php
-			                    // Fim do if do loop Wordpress
-			                   endif;
-			                ?>
-
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
 
-    </article>
+            </article>
 </section>
 
 <!-- Carrega o footer -->
-<?php get_footer(); ?> 
+<?php get_footer(); ?>

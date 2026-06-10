@@ -1,3 +1,4 @@
+<?php /* Template Name: Página Artigos */ ?>
 <!-- Carrega o cabeçalho -->
 <?php get_header(); ?> 
 
@@ -13,7 +14,7 @@
         <div class="row">
             <div class="col">
                 <div class="container">
-                    <h1>Artigos</h1>
+                    <h1 class="titulo-secao"><?php union_the_string('Artigos'); ?></h1>
                 </div>
             </div>
         </div>
@@ -34,12 +35,11 @@
 		                <!-- Aqui entra o loop Wordpress para mostrar os Thumbs dos artigos -->
 		                <?php
 
-                            query_posts( array( 'post_type' => 'post',
-                            'category_name' => 'artigos',
-                            'orderby' => 'publish_date', 
+                            $artigos_query = new WP_Query( array( 'post_type' => 'post',
+                            'category_name' => union_get_cat_slug('artigos'),
                             'paged' => get_query_var( 'paged' ) ) );
 		             
-	                    	while ( have_posts() ) : the_post();
+	                    	while ( $artigos_query->have_posts() ) : $artigos_query->the_post();
 
 	                        // Carrega o template com os thumbs
 	                        get_template_part( 'template-parts/content', 'thumb-archive-apresentacoes');
@@ -60,7 +60,7 @@
             <div class="col">
                 <div class="wp-pagenavi text-center" role="navigation">
                     <!-- Carregar paginação caso haja necessidade -->
-                    <?php if(function_exists('wp_pagenavi')) { wp_pagenavi(); } ?>               
+                    <?php if(function_exists('wp_pagenavi')) { wp_pagenavi( array( 'query' => $artigos_query ) ); } ?>               
                 </div>
         </div>
 

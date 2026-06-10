@@ -13,7 +13,7 @@ function listCategories( $taxonomia, $urlAll ) {
 
     $categories = get_categories( $args );
 
-    echo '<a class="btn botaoCategoria" role="button" href="'. get_bloginfo('url') . '/' . $urlAll . '/">Todos</a>';
+    echo '<a class="btn botaoCategoria" role="button" href="'. home_url() . '/' . $urlAll . '/">Todos</a>';
     
     foreach ( $categories as $category ) {
 
@@ -34,7 +34,7 @@ function listCategoriesPosts( $urlAll ) {
 
     $categories = get_categories( $args );
 
-    echo '<a class="btn botaoCategoria" role="button" href="'. get_bloginfo('url') . '/' . $urlAll . '/">Todos</a>';
+    echo '<a class="btn botaoCategoria" role="button" href="'. home_url() . '/' . $urlAll . '/">Todos</a>';
     
     foreach ( $categories as $category ) {
 
@@ -62,7 +62,7 @@ function listTags( $urlAll ) {
 
   $tags = get_tags( $args );
 
-  echo '<div class="btn botaoTags"><a role="button" href="'. get_bloginfo('url') . '/' . $urlAll . '/">Todos</a></div>';
+  echo '<div class="btn botaoTags"><a role="button" href="'. home_url() . '/' . $urlAll . '/">Todos</a></div>';
   
   foreach ( $tags as $tag ) {
 
