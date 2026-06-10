@@ -1,0 +1,49 @@
+name: Sync produção → repositório
+
+on:
+  workflow_dispatch:
+
+jobs:
+  sync:
+    name: Baixar arquivos do FTP e commitar
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
+        with:
+          ref: master
+
+      - name: Instalar lftp
+        run: sudo apt-get install -y lftp
+
+      - name: Baixar arquivos do servidor via FTP
+        run: |
+          lftp -c "
+            set ftps:initial-prot '';
+            set ftp:ssl-force true;
+            set ftp:ssl-protect-data true;
+            set ssl:verify-certificate false;
+            open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }};
+            mirror --reverse=false --delete --verbose \
+              ${{ secrets.FTP_SERVER_DIR }} ./sync-tmp/
+          "
+
+      - name: Copiar arquivos sincronizados para o tema
+        run: |
+          rsync -av --delete \
+            --exclude='.git/' \
+            --exclude='.github/' \
+            ./sync-tmp/ ./
+
+      - name: Limpar pasta temporária
+        run: rm -rf ./sync-tmp
+
+      - name: Commitar alterações
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -B sync-from-prod origin/master
+          git add -A
+          git diff --cached --quiet || git commit -m "sync: atualiza tema com versão de produção"
+          git push origin sync-from-prod --force

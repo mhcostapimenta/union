@@ -1,0 +1,14 @@
+# Sistema e editores
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.swp
+.idea/
+.vscode/
+node_modules/
+
+# Arquivos de documentação interna (não vão para o servidor)
+DOCUMENTATION.md
+optimization.md
+llms.txt
