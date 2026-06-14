@@ -160,7 +160,7 @@ function union_get_meta_box( $meta_boxes ) {
       'rules'  => array(
 					'union-txtSolucaoBack' => array(
 						'required'  => true,
-						'maxlength' => 700,
+						'maxlength' => 750,
 					),
       ), 
 
@@ -168,7 +168,7 @@ function union_get_meta_box( $meta_boxes ) {
       'messages'  => array(
 				'union-txtSolucaoBack' => array(
 					'required'  => 'O texto do verso da solução é obrigatório',
-					'maxlength' => 'Tamanho máximo é de 700 caracteres',
+					'maxlength' => 'Tamanho máximo é de 750 caracteres',
 				),
       )
 
