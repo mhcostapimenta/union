@@ -39,7 +39,6 @@
             <?php
 
             $args = array(
-                'posts_per_page' => 8,
                 'post_type' => 'solucoes',              // Tipo de post
                 'orderby' => 'title',				// Ordenar pelo titulo da Solução
                 'order' => 'ASC', 						// Ordem Ascendente
