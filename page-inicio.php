@@ -41,7 +41,6 @@
             $args = array(
                 'post_type' => 'solucoes',              // Tipo de post
                 'orderby' => 'menu_order',
-                'order' => 'ASC',
                 'lang' => pll_current_language()        // Filtra pelo idioma atual
             );
 
