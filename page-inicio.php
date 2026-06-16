@@ -40,8 +40,8 @@
 
             $args = array(
                 'post_type' => 'solucoes',              // Tipo de post
-                'orderby' => 'title',				// Ordenar pelo titulo da Solução
-                'order' => 'ASC', 						// Ordem Ascendente
+                'orderby' => 'menu_order',
+                'order' => 'ASC',
                 'lang' => pll_current_language()        // Filtra pelo idioma atual
             );
 
