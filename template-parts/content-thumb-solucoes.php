@@ -1,7 +1,7 @@
 <?php
 
 // Carrega a URL da imagem thumb
-$img_url = get_the_post_thumbnail_url(get_the_ID(), 'thumb');
+$img_url = get_the_post_thumbnail_url(get_the_ID(), 'full');
 
 global $delay;
 
