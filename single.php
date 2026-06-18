@@ -23,7 +23,7 @@
         // Determina o conteúdo da página de acordo com a categoria do post
         switch ($cat_slug) {
             case "artigos":
-            case "articles":
+            case "papers":
                 $subtitle = '<h2>' . get_the_author() . '</h2>';
                 $date = '<i class="fa fa-calendar"></i><span>' . get_the_date('d/m/Y') . '</span>';
                 $subtitleBox = union_get_string('Últimos Artigos');

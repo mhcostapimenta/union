@@ -200,8 +200,9 @@
 
             $args = array(
                 'posts_per_page' => 6,
-                'post_type' => 'post',              // Tipo de post
-                'category_name' => union_get_cat_slug('projetos')
+                'post_type'      => 'post',
+                'category_name'  => union_get_cat_slug('projetos'),
+                'orderby'        => 'menu_order',
             );
 
             $loop = new WP_Query($args);

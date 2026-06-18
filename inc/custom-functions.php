@@ -148,7 +148,7 @@ function union_get_cat_slug($base_slug)
 
     // Mapeamento simples de slugs PT -> EN
     $mapping = array(
-        'artigos' => ($lang == 'en' ? 'articles' : 'artigos'),
+        'artigos' => ($lang == 'en' ? 'papers' : 'artigos'),
         'projetos' => ($lang == 'en' ? 'projects' : 'projetos'),
         'parceiros' => ($lang == 'en' ? 'partners' : 'parceiros'),
     );

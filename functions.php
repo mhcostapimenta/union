@@ -245,7 +245,7 @@ function union_create_en_menus() {
         'Main Interno EN' => array(
             'Home' => home_url('/home/'),
             'Solutions' => home_url('/home/#solucoes'),
-            'Articles' => home_url('/articles/'),
+            'Articles' => home_url('/papers/'),
             'Projects' => home_url('/projects/'),
             'Company' => home_url('/company/'),
             'Contact' => home_url('/home/#contato')
@@ -259,7 +259,7 @@ function union_create_en_menus() {
         'Footer Interno EN' => array(
             'Home' => home_url('/home/'),
             'Solutions' => home_url('/home/#solucoes'),
-            'Articles' => home_url('/articles/'),
+            'Articles' => home_url('/papers/'),
             'Projects' => home_url('/projects/')
         )
     );
